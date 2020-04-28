@@ -5,10 +5,24 @@
     </div>
 
     <div class="book-detail">
-      <div class="book-price">￥{{commDetailData.goodsSalePrice}}</div>
       <!-- <div class="book-name">{{commDetailData.goodsName}}</div> -->
+      <div class="book-price">
+        <div>￥{{commDetailData.goodsSalePrice}}</div>
+        <div>￥{{commDetailData.goodsFixPrice}}</div>
+        <div class="book-evaluate">
+        <el-rate
+          v-model="value"
+          disabled
+          show-score
+          text-color="#ff9900"
+          score-template="{value}">
+        </el-rate>
+       </div>
+      </div>
+      <div class="book-name">{{commDetailData.goodsName}}</div>
       <div class="book-Describe">{{commDetailData.goodsDescription}}</div>
       <div class="count-box">
+        
         <span>数量</span>
 
         <div class="handler-box">
@@ -37,6 +51,7 @@ export default {
   name: 'comm-detail',
   data () {
     return {
+       value:0,
       commDetailData: {
         // goodsName: '三国演义',
         // isbn: '',
@@ -60,6 +75,7 @@ export default {
         console.log(res)
         this.commDetailData = res.data
         this.commDetailData.storeAddress = JSON.parse(window.sessionStorage.getItem('userInfo')).storeAddress
+        this.value = this.commDetailData.goodsStar
     })
   },
   methods: {
@@ -137,14 +153,34 @@ export default {
   margin: 10px auto 0;
 
   .book-price {
-    font-size: 22px;
-    color: red;
+    // font-size: 22px;
+    // color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .book-evaluate{
+        margin-right: 15px;
+       .el-rate{
+         float: left;
+       }
+    }
+    div:nth-child(1){
+          font-size: 22px;
+         
+         
+          color: red;
+       }
+        div:nth-child(2){
+           margin-right: 110px;
+           font-size: 12px;
+           text-decoration: line-through;
+        }
+    }
+ 
+  .book-name {
+    font-size: 18px;
+    line-height: 30px;
   }
-
-  // .book-name {
-  //   font-size: 18px;
-  //   line-height: 30px;
-  // }
 
   .book-Describe {
     font-size: 14px;
@@ -153,7 +189,14 @@ export default {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
   }
-
+  // .book-evaluate{
+  //   border-bottom: 1px solid #ddd;
+  //   padding-bottom: 10px;
+  //   display: flex;
+  //   .el-rate{
+  //     width: 70%;
+  //   }
+  // }
   .count-box {
     display: flex;
     justify-content: space-between;

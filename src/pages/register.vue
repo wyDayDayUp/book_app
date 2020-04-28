@@ -104,7 +104,8 @@ export default {
       rules:{
         userLoginName:[
           { required: true, message: '请输入账号名', trigger: 'blur' },
-          { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' }
+          { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' },
+          {pattern:/^[0-9a-zA-Z]+$/, message: '不能带有汉字', trigger: 'blur'}
         ],
         userName:[
            { required: true, message: '请输入用户姓名', trigger: 'blur' },

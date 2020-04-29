@@ -64,8 +64,8 @@ export default {
           Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('user')).access_token
         }
       }).then(res=>{
-        if(res.data.code != 1) return console.log('失败')
-          console.log('成功')
+        if(res.data.code != 1) return  this.$message.error(res.data.msg)
+          this.$message.success('感谢您的评价和惠顾！')
           this.$router.push({path: '/order-list'})
       })
     }

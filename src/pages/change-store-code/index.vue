@@ -28,7 +28,14 @@ export default {
       }).then(res=>{
         if(res.code != 1) return console.log('失败')
           console.log('成功')
-          this.$router.push('/mine')
+          this.$message.success(data.msg + ', 请重新登陆')
+          setTimeout(() => {
+            sessionStorage.clear('userInfo')
+            sessionStorage.clear('userId')
+            sessionStorage.clear('user')
+            this.$router.push({path: '/login'})
+          })
+          // this.$router.push('/mine')
       })
     }
   }

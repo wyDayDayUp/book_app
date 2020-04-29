@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
     <div class="leader">
         <ul>
             <li :class="act1" @click="Act1">全部订单</li>
@@ -8,6 +8,7 @@
             <li :class="act4" @click="Act4">已完成</li>
         </ul>
     </div>
+    <div class="list-box">
     <div class="order-item" v-for="(item,index) in list" :key="item.orderId" :class="index === 0 ? 'Top':''">
         <div class="item-top"  @click="toPage(item.orderId)">
             <img src="../../assets/我的订单.png" alt="">
@@ -61,18 +62,19 @@
         </div>
      </div>
       <div class="btn-list" v-show="Type === 'shop'">
-          <el-button v-if="item.orderCondition===0" @click="btn1(item.orderId,item.version)">取消订单</el-button>
-          <el-button v-if="item.orderCondition===0" @click="btn2(item.orderId,item.version)">订单到货</el-button>
-          <el-button v-if="item.orderCondition===2" @click="btn3(item.orderId,item.version)">订单已取货</el-button>
-          <el-button v-if="item.orderCondition===2" @click="btn4(item.orderId,item.version)">取消到货</el-button>
-          <el-button v-if="item.orderCondition===3" @click="btn5(item.orderId,item.version)">取消已取货</el-button>
+          <button v-if="item.orderCondition===0" @click="btn1(item.orderId,item.version)">取消订单</button>
+          <button v-if="item.orderCondition===0" @click="btn2(item.orderId,item.version)">订单到货</button>
+          <button v-if="item.orderCondition===2" @click="btn3(item.orderId,item.version)">订单已取货</button>
+          <button v-if="item.orderCondition===2" @click="btn4(item.orderId,item.version)">取消到货</button>
+          <button v-if="item.orderCondition===3" @click="btn5(item.orderId,item.version)">取消已取货</button>
       </div>
        <div class="btn-list1" v-show="Type === 'user'">
-          <el-button v-if="item.orderCondition===3" @click="btn6(item.orderId)">确认收货</el-button>
-          <el-button v-if="item.orderCondition===4" @click="btn7(item)">评价</el-button>
+          <button v-if="item.orderCondition===3" @click="btn6(item.orderId)">确认收货</button>
+          <button v-if="item.orderCondition===4" @click="btn7(item)">评价</button>
       </div>
     </div>
   </div>
+  </div> 
 </template>
 
 <script>
@@ -213,8 +215,8 @@ export default {
                 orderCondition:1,
                 version:val2
             }).then(res=>{
-                if(res.code!=1) return false
-                     console.log('成功')
+                if(res.code!=1) return this.$message.error(res.msg)
+                    this.$message.info('订单状态修改成功')
                     this.getOrderList()  
             })
         },
@@ -224,8 +226,8 @@ export default {
                 orderCondition:2,
                 version:val2
             }).then(res=>{
-                if(res.code!=1) return false
-                   console.log('成功')
+                 if(res.code!=1) return this.$message.error(res.msg)
+                    this.$message.info('订单状态修改成功')
                    this.getOrderList() 
             })
         },
@@ -235,8 +237,8 @@ export default {
                 orderCondition:3,
                 version:val2
             }).then(res=>{
-                if(res.code!=1) return false
-                     console.log('成功')
+                 if(res.code!=1) return this.$message.error(res.msg)
+                    this.$message.info('订单状态修改成功')
                     this.getOrderList()  
             })
         },
@@ -246,8 +248,8 @@ export default {
                 orderCondition:0,
                 version:val2
             }).then(res=>{
-                if(res.code!=1) return false
-                     console.log('成功')
+                 if(res.code!=1) return this.$message.error(res.msg)
+                    this.$message.info('订单状态修改成功')
                   this.getOrderList()    
             })
         },
@@ -257,8 +259,8 @@ export default {
                 orderCondition:2,
                 version:val2
             }).then(res=>{
-                if(res.code!=1) return false
-                     console.log('成功')
+                 if(res.code!=1) return this.$message.error(res.msg)
+                    this.$message.info('订单状态修改成功')
                   this.getOrderList()    
             })
         },
@@ -267,8 +269,8 @@ export default {
                 orderId:val,
                 orderCondition:4
             }).then(res=>{
-                if(res.code!=1) return false
-                    console.log('成功')
+                 if(res.code!=1) return this.$message.error(res.msg)
+                    this.$message.info('订单状态修改成功')
                 this.getOrderList()    
             })
         },
@@ -283,6 +285,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .box{
+      background-color: #f6f6f6;
+  }
   .leader {
       position: fixed;
       left: 0;
@@ -290,7 +295,8 @@ export default {
       z-index: 99999;
       height: 50px;
       width: 100%;
-      background-color: #fff;
+      padding-bottom: 5px;
+      background-color: #f6f6f6;
       ul {
           height: 100%;
           padding: 0 0 0 2.5%;
@@ -312,8 +318,10 @@ export default {
   }
   .order-item {
       width: 95%;
-      margin: 0 auto 12px;
+      margin: 0 auto 15px;
+      position: relative;
     //   margin-top: 50px;
+    //   bottom: 50px;
       background-color: white;
       border-radius: 8px;
       padding: 10px 8px 10px 15px;
@@ -431,24 +439,42 @@ export default {
           }
       }
   }
+.list-box{
+    // position: relative;
+    // left: 0px;
+    padding-bottom: 50px;
+}
  /deep/ .btn-list{
-      float: right;
-     .el-button{
-      background-color:  rgb(197, 156, 104);
-      color: rgb(255, 255, 214);
-      line-height: 30px;
-      height: 30px;
-      text-align: center;
+    //   position: absolute;
+    //   right: 0px;
+    //   bottom: -10px;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 15px;
+      button{
+        width: 82px;
+        height: 25px;
+        outline: none;
+        border: 1px solid #c39862;
+        background-color: #ffffff;
+        border-radius: 18px;
+        color: #c39862;
+        margin-right: 5px;
   }
  }
  /deep/ .btn-list1{
-      float: right;
-     .el-button{
-      background-color:  rgb(197, 156, 104);
-      color: rgb(255, 255, 214);
-      line-height: 30px;
-      height: 30px;
-      text-align: center;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 15px;
+     button{
+        width: 82px;
+        height: 25px;
+        outline: none;
+        border: 1px solid #c39862;
+        background-color: #ffffff;
+        border-radius: 18px;
+        color: #c39862;
+        margin-right: 5px;
   }
  }
  /deep/ .Top{

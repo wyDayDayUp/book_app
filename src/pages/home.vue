@@ -25,25 +25,29 @@
       <el-footer v-show="meta.footerShow">
           <!-- 店长 -->
         <div @click="$router.push({path: '/order-list'})" v-show="userType === 'shop'">
-          <img src="../assets/u1075.png" alt="">
-          <!-- <img v-show="currentPath !== '/comm-home'" src="../assets/home.png" alt=""> -->
+          <img v-show="currentPath === '/order-list'" src="../assets/u1075.png" alt="">
+          <img v-show="currentPath !== '/order-list'" src="../assets/ding.png" alt="">
           <div :style="{color: currentPath === '/shop-order-list' ? '#C39862' : '#333333'}">订单</div>
         </div>
         <div @click="$router.push({path: '/diver'})" v-show="userType === 'shop'">
-          <img  src="../assets/u1080.png" alt="">
-          <div :style="{color: currentPath === '/order-list' ? '#C39862' : '#333333'}">司机</div>
+          <img v-show="currentPath === '/diver'" src="../assets/u1080.png" alt="">
+          <img v-show="currentPath !== '/diver'" src="../assets/driver.png" alt="">
+          <div :style="{color: currentPath === '/order-lis' ? '#C39862' : '#333333'}">司机</div>
         </div>
         <div @click="$router.push({path: '/shop-mine'})" v-show="userType === 'shop'">
-          <img  src="../assets/u184.png" alt="">
+          <img  v-show="currentPath === '/shop-mine'" src="../assets/focus.png" alt="">
+          <img  v-show="currentPath !== '/shop-mine'" src="../assets/u184.png" alt="">
           <div :style="{color: currentPath === '/mie' ? '#C39862' : '#333333'}">我的</div>
         </div>
          <!-- 司机   -->
         <div @click="$router.push({path: '/diver-shop'})" v-show="userType === 'diver'">
-          <img src="../assets/u169.png" alt="">
+          <img  v-show="currentPath === '/diver-shop'" src="../assets/h.png" alt="">
+          <img  v-show="currentPath !== '/diver-shop'" src="../assets/u169.png" alt="">
           <div :style="{color: currentPath === '/order-list' ? '#C39862' : '#333333'}">门店</div>
         </div>
         <div @click="$router.push({path: '/diver-mine'})" v-show="userType === 'diver'">
-          <img src="../assets/u184.png" alt="">
+          <img  v-show="currentPath === '/diver-mine'" src="../assets/f.png" alt="">
+          <img  v-show="currentPath !== '/diver-mine'" src="../assets/u184.png" alt="">
           <div :style="{color: currentPath === '/order-list' ? '#C39862' : '#333333'}">我的</div>
         </div>
         <!-- 普通用户 -->
@@ -88,11 +92,15 @@ export default {
       return this.$route.meta.title
     },
     goBackBtn () {
+      console.log(this.$route.meta.goBack)
       if(this.$route.meta.goBack === '/mine'){
-        if(this.userType === 'shop')
+        console.log(666)
+        if(this.$store.state.userType === 'shop')
           this.$route.meta.goBack = '/shop-mine'
-        else if(this.userType === 'diver') 
+        if(this.$store.state.userType === 'diver') 
            this.$route.meta.goBack = '/diver-mine'
+        if(this.$store.state.userType === 'user')   
+          this.$route.meta.goBack = '/mine'
       }
       return this.$route.meta.goBack
     },
@@ -208,11 +216,23 @@ export default {
     }
   }
 }
+
+
 .move2-enter-active{
             animation: movetwo .5s;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
         }
         .move2-leave-active{
-            animation: movetwo .5s reverse;
+            animation: movetwo .5s reverse ;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
         }
         @keyframes movetwo{
             0%{

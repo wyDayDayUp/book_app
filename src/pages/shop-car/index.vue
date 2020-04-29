@@ -187,17 +187,28 @@ export default {
              this.list[i].checked = false
            }
          }
-      }  
-      console.log(this.listId)  
-      req('deleteShoppingCart',{
-        shoppingCartIds:this.listId.join(',')
-      }).then(res=>{
-        if(res.code != 1) return console.log('失败')
-           this.$message.success('删除成功')
-           this.getShop()
-           this.total = this.gettotal()
-           this.listId = []
-      })  
+      } 
+       this.$confirm('是否要删除选中的商品', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          // type: 'warning'
+        }).then(() => {
+           req('deleteShoppingCart',{
+            shoppingCartIds:this.listId.join(',')
+          }).then(res=>{
+            if(res.code != 1) return this.$message.error(res.msg)
+              this.$message.success('删除成功')
+              this.getShop()
+              this.total = this.gettotal()
+              this.listId = []
+          })  
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        }); 
+      // console.log(this.listId)  
     },
     accounts(){
       if(this.listId.length <= 0)

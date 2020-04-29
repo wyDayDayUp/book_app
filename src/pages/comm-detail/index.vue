@@ -92,15 +92,26 @@ export default {
          this.$router.push({path: '/change-store-code'})
          return this.$message.error('请先绑定店铺邀请码，在进行购买')
       }
-      req('addOrder',{
-        orderClientCode:window.sessionStorage.getItem('userId'),
-        orderDetailGoodsCodes:this.commDetailData.goodsId,
-        orderDetailGoodsNums:this.bookCount,
-        orderStoreCode:JSON.parse(sessionStorage.getItem('userInfo')).storeId,
-      }).then(res=>{
-        if(res.code != 1) return console.log('失败')
-           this.$router.push({path: '/order-list'})
-      })
+      this.$confirm('请检查信息无误后，进行结算', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          // type: 'warning'
+        }).then(() => {
+           req('addOrder',{
+            orderClientCode:window.sessionStorage.getItem('userId'),
+            orderDetailGoodsCodes:this.commDetailData.goodsId,
+            orderDetailGoodsNums:this.bookCount,
+            orderStoreCode:JSON.parse(sessionStorage.getItem('userInfo')).storeId,
+          }).then(res=>{
+            if(res.code != 1) return this.$message.error(res.msg)
+              this.$router.push({path: '/order-list'})
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
     },
     addBuy(){
       req('addShoppingCart',{
@@ -108,7 +119,7 @@ export default {
         shoppingCartClientCode:window.sessionStorage.getItem('userId'),
         shoppingCartGoodsNum:this.bookCount
       }).then(res=>{
-        if(res.code != 1) return console.log('失败')
+        if(res.code != 1) return  this.$message.error(res.msg)
            this.$message.success('加入购物车成功')
       })
     },
@@ -123,7 +134,9 @@ export default {
 .container {
   background: #ddd;
 }
-
+.el-message-box{
+   width: 300px;
+}
 .book-banner {
   width: 100%;
   height: 300px;

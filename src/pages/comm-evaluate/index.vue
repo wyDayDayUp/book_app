@@ -174,6 +174,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   background: #ddd;
+   min-height: 616px;
 
   .evaluate-title {
     width: 100%;
@@ -194,13 +195,15 @@ export default {
 
   .evaluate-list {
     width: 95%;
-    background: #fff;
+    background: #ddd;
     margin: 0 auto;
     border-radius: 10px;
-
+    padding-bottom: 20px;
     li {
+      background-color: #fff;
+      border-radius: 10px;
       display: flex;
-
+      margin-bottom: 10px;
       // .head-pic {
       //   width: 50px;
       //   height: 50px;
@@ -227,6 +230,7 @@ export default {
             .date {
               color: #ddd;
               font-size: 14px;
+              margin-top: 5px;
             }
           }
 

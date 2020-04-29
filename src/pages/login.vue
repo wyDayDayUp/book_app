@@ -52,7 +52,7 @@ export default {
             axios.post('http://299z2526w7.wicp.vip/uaa/auth/form',qs.stringify(this.formData)).then(res=>{
               console.log(res.data)
               if(res.data.code!=0) return this.$message.error('用户名或密码错误')
-              // this.$message.success('登录成功')
+              this.$message.success('登录成功')
               window.sessionStorage.setItem('user',JSON.stringify(res.data.data))
               req('findUser').then(res=>{
                 console.log(res)
@@ -85,6 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  text-decoration: none;
+  color: rgb(64, 158, 255);
+}
 .logo {
   width: 80%;
   margin: 0 auto;

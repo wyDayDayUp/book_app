@@ -54,7 +54,7 @@ export default {
           img1: require('../../assets/u666.png'),
           label: '退出登录',
           img2: require('../../assets/右.png'),
-          toPath: '/login'
+          toPath: '/login',
         }
       ],
       driverInfo:{}
@@ -62,7 +62,28 @@ export default {
   },
   methods: {
     toPage (data) {
-      this.$router.push({path: data.toPath})
+      if(data.label === '退出登录'){
+         this.$confirm('是否退出登录，返回登录界面？', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          // type: 'warning'
+        }).then(() => {
+           this.$router.push({path: data.toPath})
+          // this.$message({
+          //   type: 'success',
+          //   message: '删除成功!'
+          // });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消'
+          });          
+        });
+      }
+      else{
+        this.$router.push({path: data.toPath})
+      }
+      // this.$router.push({path: data.toPath})
     }
   },
   mounted(){
@@ -76,6 +97,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-message-box{
+   width: 300px;
+}
 .bg{
   height: 100px;
   display: flex;
@@ -88,6 +112,7 @@ export default {
     img{
       width: 65px;
       height: 65px;
+      border-radius: 50%;
     }
     .text-con{
       flex: 2;

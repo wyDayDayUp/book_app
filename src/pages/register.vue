@@ -40,7 +40,7 @@
       <el-form-item label="邀请码" prop="storeInvitationCode">
         <el-input v-model="formData.storeInvitationCode"></el-input>
       </el-form-item>
-       <el-form-item label="头像上传" prop="imageId" label-width="100px" class="img"  ref="img">
+       <el-form-item label="头像上传"  label-width="100px" class="img"  ref="img">
           <el-upload
           action="http://299z2526w7.wicp.vip//app/image/uploadImage"
           v-model="formData.imageId"
@@ -53,6 +53,9 @@
       </el-form-item>
       <el-form-item>
         <el-button class="register-btn" type="primary" @click="register">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册</el-button>
+        <div>
+          <el-button type="text" @click="toLogin">返回登录</el-button>
+        </div>
       </el-form-item>
     </el-form>
   </div>
@@ -134,9 +137,9 @@ export default {
         confirmUserPassword:[
           { validator: validatePass2, trigger: 'blur' }
         ],
-        imageId:[
-           { required: true, message: '请上传头像', }
-        ]
+        // imageId:[
+        //    { required: true, message: '请上传头像', }
+        // ]
         // storeInvitationCode:[
         //   {required: true, message: '请输入邀请码', trigger: 'change' }
         // ]
@@ -166,6 +169,9 @@ export default {
         }
       });
       console.log(this.formData)
+    },
+    toLogin(){
+       this.$router.push({path: '/login'})
     }
   }
 }

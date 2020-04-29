@@ -1,14 +1,16 @@
 <template>
   <div>
-    <div class="box" v-for="(item, index) in driverList" :key="index">
-      <div class="diverInfo">
-        <div>
-          <img src="@/assets/u1210.png" />
-          <span>{{item.userName}}</span>
-        </div>
-        <div>
-          <img src="@/assets/u1151.png" />
-          <span>{{item.userPhone}}</span>
+    <div class="list-box">
+      <div class="box" v-for="(item, index) in driverList" :key="index">
+        <div class="diverInfo">
+          <div>
+            <img src="@/assets/u1210.png" />
+            <span>{{item.userName}}</span>
+          </div>
+          <div>
+            <img src="@/assets/u1151.png" />
+            <span>{{item.userPhone}}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -35,8 +37,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list-box{
+  padding-bottom: 50px;
+}
 .diverInfo {
-  border-bottom: 1px solid black;
+  // border-bottom: 1px solid black;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -54,6 +59,10 @@ export default {
  
 }
 .box {
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  margin-top: 15px;
 }
 </style>

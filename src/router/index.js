@@ -157,7 +157,7 @@ export default new Router({
             goBack: '/mine',
             goBackShow: true,
             headerHide: false,
-            footerShow: false
+            footerShow: true
           }
         },
         // 修改密码
@@ -264,6 +264,7 @@ export default new Router({
               ],
               goBack: '/shop-mine',
               goBackShow: true,
+              footerShow: true
             } 
           } ,
           // 店长我的
@@ -275,10 +276,11 @@ export default new Router({
               title: [
                 {
                   titleName: '我的',
-                  toPath: '/mine'
+                  toPath: '/shop-mine'
                 }
               ],
-              footerShow: true
+              footerShow: true,
+              goBack: '/mine',
             } 
           } ,  
           // 司机我的
@@ -310,6 +312,7 @@ export default new Router({
               ],
               goBack: '/diver-mine',
               goBackShow: true,
+              footerShow: true
               // headerHide: true,   
             } 
           } ,  

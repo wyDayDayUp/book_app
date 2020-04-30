@@ -159,8 +159,8 @@ export default {
           req('registerClient',{
             ...this.formData
           }).then(res=>{
-            if(res.code != 1) return console.log('失败')
-              console.log('成功')
+            if(res.code != 1) return this.$message.error(res.msg)
+              this.$message.success('恭喜您注册成功！')
               this.$router.push('/login')
           })
         } else {

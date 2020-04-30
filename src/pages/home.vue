@@ -93,7 +93,7 @@ export default {
     },
     goBackBtn () {
       console.log(this.$route.meta.goBack)
-      if(this.$route.meta.goBack === '/mine'){
+      if(this.$route.meta.goBack === '/mine' ||this.$route.meta.goBack === '/shop-mine' ){
         console.log(666)
         if(this.$store.state.userType === 'shop')
           this.$route.meta.goBack = '/shop-mine'

@@ -69,6 +69,9 @@ export default {
           // type: 'warning'
         }).then(() => {
            this.$router.push({path: data.toPath})
+            sessionStorage.clear('userInfo')
+            sessionStorage.clear('user')
+            sessionStorage.clear('userId')
           this.$message({
             type: 'success',
             message: '退出登录成功!'

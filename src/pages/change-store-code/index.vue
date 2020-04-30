@@ -4,9 +4,9 @@
         <div class="con-left">新邀请码</div>
         <input type="text" placeholder="请输入邀请码" v-model="storeInvitationCode">
     </div>
-    <div class="btn">
+    <div class="btn" @click="Determine">
         <img src="../../assets/按钮.png" >
-        <span @click="Determine">确认</span>
+        <span>确认</span>
     </div>
   </div>
 </template>
@@ -26,9 +26,9 @@ export default {
         userId: window.sessionStorage.getItem('userId'),
         storeInvitationCode:this.storeInvitationCode
       }).then(res=>{
-        if(res.code != 1) return console.log('失败')
+        if(res.code != 1) return this.$message.error(res.msg)
           console.log('成功')
-          this.$message.success(data.msg + ', 请重新登陆')
+          this.$message.success(res.msg + ', 请重新登陆')
           setTimeout(() => {
             sessionStorage.clear('userInfo')
             sessionStorage.clear('userId')

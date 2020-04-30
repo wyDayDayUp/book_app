@@ -88,9 +88,9 @@ export default {
             userId: window.sessionStorage.getItem('userId'),
             ...this.ruleForm
           }).then(res=>{
-             if(res.code!=1) return console.log('修改失败')
+             if(res.code!=1) return this.$message.error(res.msg)
                  this.$message.success('修改成功')
-                   this.$router.push('/shop-mine')
+                   this.$router.push('/login')
           })
         } else {
           console.log('error submit!!');

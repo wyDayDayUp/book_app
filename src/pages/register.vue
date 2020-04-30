@@ -63,6 +63,8 @@
 
 <script>
 import req from '@/api/register.js'
+import axios from 'axios'
+import qs from 'qs'
 export default {
   name: 'register',
   
@@ -156,10 +158,17 @@ export default {
     register(){
       this.$refs.from.validate((valid) => {
         if (valid) {
-          req('registerClient',{
-            ...this.formData
-          }).then(res=>{
-            if(res.code != 1) return this.$message.error(res.msg)
+          // req('registerClient',{
+          //   ...this.formData
+          // }).then(res=>{
+          //   if(res.code != 1) return this.$message.error(res.msg)
+          //     this.$message.success('恭喜您注册成功！')
+          //     this.$router.push('/login')
+          // })
+          axios.post('http://299z2526w7.wicp.vip/app/client/registerClient',qs.stringify(this.formData)).then(res=>{
+            // console.log(res.data.code)
+            // console.log(res)
+            if(res.data.code != 1) return this.$message.error(res.data.msg)
               this.$message.success('恭喜您注册成功！')
               this.$router.push('/login')
           })

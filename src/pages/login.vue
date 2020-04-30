@@ -31,7 +31,7 @@ export default {
   data () {
     return {
       formData: {
-        username: '333',
+        username: 'kehu1',
         password: '123456'
       },
        rules: {

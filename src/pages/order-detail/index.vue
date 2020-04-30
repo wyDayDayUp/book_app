@@ -211,6 +211,7 @@ export default {
               line-height: 40px;
               text-align: right;
               padding-top: 5px;
+              padding-bottom: 8px;
               span:nth-child(1) {
                   font-size: 15px;
               }
@@ -220,6 +221,7 @@ export default {
           }
   .order-msg {
       width: 95%;
+      border-top: rgb(204,204,204) 1px solid;
       background-color: white;
       box-sizing: border-box;
       padding: 8px 0 12px;

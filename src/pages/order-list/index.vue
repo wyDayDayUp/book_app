@@ -34,7 +34,7 @@
                 <div class="price-con">
                     <span>￥</span>
                     <span>{{item1.orderDetailGoodsSalePrice}} &nbsp;</span>
-                    <span>x{{item1.orderDetailGoodsNum}}</span>
+                    <span>x&nbsp;{{item1.orderDetailGoodsNum}}</span>
                 </div>
             </div>
         </div>
@@ -69,6 +69,7 @@
           <button v-if="item.orderCondition===3" @click="btn5(item.orderId,item.version)">取消已取货</button>
       </div>
        <div class="btn-list1" v-show="Type === 'user'">
+          <button v-if="item.orderCondition===0" @click="btn8(item.orderId)">取消订单</button>
           <button v-if="item.orderCondition===3" @click="btn6(item.orderId)">确认收货</button>
           <button v-if="item.orderCondition===4" @click="btn7(item)">评价</button>
       </div>
@@ -278,7 +279,17 @@ export default {
             console.log(val)
             this.$store.commit('getorderevaluate', val)
              this.$router.push({path: '/order-evaluate'})
-        }
+        },
+        btn8(val){
+            req('updateOrderCondition',{
+                orderId:val,
+                orderCondition:1
+            }).then(res=>{
+                 if(res.code!=1) return this.$message.error(res.msg)
+                    this.$message.info('订单状态修改成功')
+                this.getOrderList()    
+            })
+        },
         
   }
 }

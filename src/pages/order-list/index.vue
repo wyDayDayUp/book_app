@@ -370,9 +370,9 @@ export default {
                   font-size: 15px;
               }
               .text-con {
-                  font-size: 14px;
-                  line-height: 58px;
-                  margin-top: 0px;
+                  font-size: 13px;
+                //   line-height: 10px;
+                  margin-top: 5px;
                   overflow : hidden;
                   text-overflow: ellipsis;
                   display: -webkit-box;
@@ -380,14 +380,15 @@ export default {
                   -webkit-box-orient: vertical;
               }
               .props-con {
-                  font-size: 13.5px;
+                  font-size: 12px;
                   line-height: 26px;
                   margin-top: 5px;
                   color: rgb(168,168,168);
               }
               .price-con {
                   text-align: right;
-                  line-height: 26px;
+                //   line-height: 30px;
+                  margin-top: 15px;
                   span:nth-child(1) {
                       font-size: 11px;
                       color: rgb(242,0,0);
@@ -442,6 +443,7 @@ export default {
 .list-box{
     // position: relative;
     // left: 0px;
+    min-height: 550px;
     padding-bottom: 50px;
 }
  /deep/ .btn-list{

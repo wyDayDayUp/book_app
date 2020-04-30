@@ -170,11 +170,11 @@ export default {
     // color: red;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     .book-evaluate{
-        margin-right: 15px;
        .el-rate{
-         float: left;
+        //  float: left;
+        align-self: flex-end;
        }
     }
     div:nth-child(1){
@@ -198,7 +198,7 @@ export default {
   .book-Describe {
     font-size: 14px;
     color: #333;
-    font-weight: bold;
+    // font-weight: bold;
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
   }

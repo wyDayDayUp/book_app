@@ -3,7 +3,7 @@
     <div class="banner-pic-list">
       <el-carousel height="200px" >
         <el-carousel-item v-for="item in picList" :key="item.rollImageId">
-          <img :src="item.imageUrl" alt="">
+          <img :src="item.imageUrl" alt="" @click="imgpage(item)">
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -97,6 +97,11 @@ export default {
       this.$store.commit('getHotgoodsId', data)
       this.$router.push({path: '/comm-detail'})
     },
+    imgpage(data){
+      console.log(data)
+       this.$store.commit('getHotgoodsId', data.rollImageGoodsCode)
+     this.$router.push({path: '/comm-detail'})
+    }
   }
 }
 </script>

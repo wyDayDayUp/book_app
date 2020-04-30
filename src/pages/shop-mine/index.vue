@@ -81,10 +81,10 @@ export default {
           // type: 'warning'
         }).then(() => {
            this.$router.push({path: data.toPath})
-          // this.$message({
-          //   type: 'success',
-          //   message: '删除成功!'
-          // });
+          this.$message({
+            type: 'success',
+            message: '退出登录成功!'
+          });
         }).catch(() => {
           this.$message({
             type: 'info',

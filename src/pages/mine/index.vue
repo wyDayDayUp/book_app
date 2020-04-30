@@ -70,10 +70,10 @@ export default {
           // type: 'warning'
         }).then(() => {
            this.$router.push({path: data.toPath})
-          // this.$message({
-          //   type: 'success',
-          //   message: '删除成功!'
-          // });
+          this.$message({
+            type: 'success',
+            message: '退出登录成功!'
+          });
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -104,7 +104,7 @@ export default {
               width: 65px;
               height: 65px;
               position: relative;
-              left: 38%;
+              left: 25%;
           }
       }
       .text-con {

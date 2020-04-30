@@ -18,9 +18,9 @@
           </el-form-item>
         </el-form>
     </div>
-    <div class="btn">
+    <div class="btn" @click="get">
         <img src="../../assets/按钮.png" >
-        <span @click="get">确认</span>
+        <span>确认</span>
     </div>
   </div>
 </template>

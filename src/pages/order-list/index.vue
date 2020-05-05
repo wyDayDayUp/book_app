@@ -38,10 +38,10 @@
                 </div>
             </div>
         </div>
-        <div class="item-bottom">
+        <!-- <div class="item-bottom">
             <span>共&nbsp;{{item1.orderDetailGoodsNum}}&nbsp;件商品，合计￥</span>
             <span>{{item1.orderDetailGoodsSalePrice*item1.orderDetailGoodsNum}}</span>
-        </div>
+        </div> -->
         <!-- <div class="item-more" v-show="item.orderStatus == '已完成'">
             <div class="btn" @click.stop="evaluate(item)">
                 <span>评价</span>
@@ -61,6 +61,10 @@
 
         </div>
      </div>
+       <div class="item-bottom">
+            <span>共&nbsp;{{item.orderTotalNum}}&nbsp;件商品，合计￥</span>
+            <span>{{item.orderTotalPrice}}</span>
+        </div>
       <div class="btn-list" v-show="Type === 'shop'">
           <button v-if="item.orderCondition===0" @click="btn1(item.orderId,item.version)">取消订单</button>
           <button v-if="item.orderCondition===0" @click="btn2(item.orderId,item.version)">订单到货</button>
@@ -70,6 +74,7 @@
       </div>
        <div class="btn-list1" v-show="Type === 'user'">
           <button v-if="item.orderCondition===0" @click="btn8(item.orderId)">取消订单</button>
+          <button v-if="item.orderCondition===2" @click="btn8(item.orderId)">取消订单</button>
           <button v-if="item.orderCondition===3" @click="btn6(item.orderId)">确认收货</button>
           <button v-if="item.orderCondition===4" @click="btn7(item)">评价</button>
       </div>
@@ -335,7 +340,7 @@ export default {
     //   bottom: 50px;
       background-color: white;
       border-radius: 8px;
-      padding: 10px 8px 10px 15px;
+      padding: 10px 8px 5px 15px;
       box-sizing: border-box;
       .item-top {
           width: 100%;
@@ -365,6 +370,7 @@ export default {
           display: flex;
           box-sizing: border-box;
           padding-top: 5px;
+          margin-top: 20px;
           .img-con {
               flex: 1;
               text-align: center;
@@ -417,7 +423,7 @@ export default {
       }
       .item-bottom {
           width: 100%;
-          line-height: 40px;
+        //   line-height: 40px;
           text-align: right;
           padding-top: 5px;
           span:nth-child(1) {
@@ -496,13 +502,17 @@ export default {
  .orderInfo{
      margin-top: 8px;
      display: flex;
-     justify-self: start;
+     justify-content: flex-end;
      align-items: center;
+     div:nth-child(1){
+         margin-right: 15px;
+     }
      div{
          display: flex;
          align-items: center;
+         justify-self: flex-end;
          font-size: 13px;
-         margin-right: 10px;
+        //  margin-left: 10px;
      }
  }
 </style>

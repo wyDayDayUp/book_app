@@ -117,7 +117,7 @@ export default {
            { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' }
         ],
         userSex:[
-           { required: true, message: '请输入性别', trigger: 'blur' },
+           { required: true, message: '请输入性别', trigger: 'change' },
         ],
         userPhone:[
            { required: true, message: '请输入电话号码', trigger: 'blur' },

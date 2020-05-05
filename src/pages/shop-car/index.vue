@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <ul class="book-list">
+    <div v-if="list.length === 0" class="kong">
+      <div>购物车居然是空的</div>
+      <div>在忙也要给自己买东西，对自己好一点~</div>
+      <button @click="kongbtn">去逛逛</button>
+    </div>
+    <ul class="book-list" v-else>
       <li class="book-list-item" v-for="item in list" :key="item.shoppingCartId">
 
         <!-- 选择按钮 -->
@@ -229,14 +234,32 @@ export default {
       })
        
     },
+    kongbtn(){
+       this.$router.push({path: '/comm-home'})
+    }
   }
 }
 </script>
 
 
 <style lang="scss" scoped>
+.kong{
+     margin-top: 180px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     div{
+       margin-bottom: 15px;
+     }
+     button{
+       width: 80px;
+       height: 30px;
+     }
+}
 .container {
   padding-bottom: 110px;
+  
 }
   .book-list {
     width: 100%;

@@ -21,6 +21,12 @@
       </div>
       <div class="book-name">{{commDetailData.goodsName}}</div>
       <div class="book-Describe">{{commDetailData.goodsDescription}}</div>
+      <div class="book-num">
+        <div>
+          <span>销售量:&nbsp;{{commDetailData.goodsSaleSum}}</span>    
+          <span>库存:&nbsp;{{commDetailData.goodsStock}}</span>    
+        </div>
+      </div>
       <div class="count-box">
         
         <span>数量</span>
@@ -199,8 +205,21 @@ export default {
     font-size: 14px;
     color: #333;
     // font-weight: bold;
+    padding: 5px 0;
+  }
+  .book-num{
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    font-size: 13px;
+    color: #ccc;
+    div{
+      display: flex;
+      align-items: center;
+      span{
+        margin-right: 15px;
+      }
+    }
   }
   // .book-evaluate{
   //   border-bottom: 1px solid #ddd;
